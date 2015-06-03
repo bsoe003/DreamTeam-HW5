@@ -337,6 +337,13 @@ a {
   #log-in-button:hover {
     border: 1px solid #68CEDE; }
 
+#google-button {
+  background: #dd4b39;
+  border: 1px solid #151515;
+  cursor: pointer; }
+  #google-button:hover {
+    border: 1px solid #F77A6A; }
+
 #sign-in-section {
   margin-top: 30px; }
   #sign-in-section input {

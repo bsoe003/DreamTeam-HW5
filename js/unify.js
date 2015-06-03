@@ -286,7 +286,7 @@ $(window).load(function() {
 
         var tr;
         if (type == 'add') {
-            tr = document.getElementsByTagName("tr");
+            tr = document.getElements("tr");
         } else {
             tr = $('#editTable').find('tr');
         }
@@ -302,8 +302,6 @@ $(window).load(function() {
         var tlw = 0; // total weight
         var tlm = 0; // total metal 
         var tlc = 0; // total cost
-
-
 
         for (var i = 0; i < tr.length; i++) {
             // key value pair for JSON
@@ -368,13 +366,6 @@ $(window).load(function() {
                 tlm = "invalid";
                 tlc = "invalid";
             }
-
-            // if (!checkNumber(wpu, "float") || !checkNumber(qty, "integer")) {
-            //     tlw = "invalid";
-            //     tlm = "invalid";
-            //     tlc = "invalid";
-            // }
-
 
             $("#total-weight").next().text(tlw);
             $("#total-metal").next().text(tlm);
@@ -942,7 +933,6 @@ $(document).ready(function() {
             var reader = new FileReader();
             reader.onload = imageLoaded;
             reader.readAsDataURL(this.files[0]);
-            //console.log(this.files[0]);
         }
     });
 
@@ -959,7 +949,6 @@ $(document).ready(function() {
     }
 
     function convertImgToBase64(url, callback, outputFormat) {
-        //console.log(url);
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext('2d');
         var img = new Image;
@@ -970,9 +959,7 @@ $(document).ready(function() {
             canvas.width = img.width;
             ctx.drawImage(img, 0, 0);
             var dataURL = canvas.toDataURL(outputFormat || 'image/png');
-            console.log(dataURL);
             callback.call(this, dataURL);
-            // Clean up
             canvas = null;
             imgBase = dataURL;
         };
@@ -1294,8 +1281,6 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
             coinChart.update();
         };
 
-
-
         function CSVToArray(strData, strDelimiter) {
             // Check to see if the delimiter is defined. If not,
             // then default to comma.
@@ -1365,13 +1350,10 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                     );
 
                 } else {
-
                     // We found a non-quoted value.
                     strMatchedValue = arrMatches[3];
 
                 }
-
-
                 // Now that we have our value string, let's add
                 // it to the data array.
                 arrData[arrData.length - 1].push(strMatchedValue);
@@ -1400,9 +1382,26 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
             }
         }
 
-        var getMyGold = function() {
+        var getMyMetal = function(metal) {
             var stackRef = userRef.child(currentUser).child("coinStack");
-            stackRef.child('gold').on("value", function(data) {
+            switch (metal.toLowerCase()) {
+                case "gold":
+                    metaltotal = goldtotal.slice();
+                    metal1oz = gold1oz.slice();
+                    break;
+                case "silver":
+                    metaltotal = silvertotal.slice();
+                    metal1oz = silver1oz.slice();
+                    break;
+                case "platinum":
+                    metaltotal = plattotal.slice();
+                    metal1oz = plat1oz.slice();
+                    break;
+                default:
+                    return;
+            }
+            //console.log(goldtotal);
+            stackRef.child(metal).on("value", function(data) {
                 if (!data) {
                     console.log("No coins found in Firebase");
                     return;
@@ -1419,8 +1418,24 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                     var coinPurchDate = new Date(coinPurch);
                     var currDate = new Date();
                     var distanceDate = Math.floor((currDate - coinPurchDate) / (24 * 60 * 60 * 1000));
-                    for (i = 0; i < goldtotal.length && i < distanceDate + 1; i++) {
-                        goldtotal[goldtotal.length - 1 - i] += (coinOzt * gold1oz[i]);
+                    for (i = 0; i < metaltotal.length && i < distanceDate + 1; i++) {
+                        metaltotal[metaltotal.length - 1 - i] += (coinOzt * metal1oz[i]);
+                    }
+                    switch (metal.toLowerCase()) {
+                        case "gold":
+                            goldtotal = metaltotal.slice();
+                            gold1oz = metal1oz.slice();
+                            break;
+                        case "silver":
+                            silvertotal = metaltotal.slice();
+                            silver1oz = metal1oz.slice();
+                            break;
+                        case "platinum":
+                            plattotal = metaltotal.slice();
+                            plat1oz = metal1oz.slice();
+                            break;
+                        default:
+                            return;
                     }
                 }
                 waitForTotal--;
@@ -1430,9 +1445,9 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                 }
 
 
-                if (page == "gold.html") {
-                    var perc = (goldtotal[goldtotal.length - 1] - goldtotal[goldtotal.length - 2]) / goldtotal[goldtotal.length - 2]
-                    if (goldtotal[goldtotal.length - 2] == 0)
+                if (page == metal + ".html") {
+                    var perc = (metaltotal[metaltotal.length - 1] - metaltotal[metaltotal.length - 2]) / metaltotal[metaltotal.length - 2]
+                    if (metaltotal[metaltotal.length - 2] == 0)
                         perc = 0;
                     perc = (perc * 100).toFixed(1);
                     if (perc >= 0) {
@@ -1443,8 +1458,8 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                         $(".daily-change").text("-" + perc + "%");
                     }
 
-                    var perc = (goldtotal[goldtotal.length - 1] - goldtotal[0]) / goldtotal[0]
-                    if (goldtotal[0] == 0)
+                    var perc = (metaltotal[metaltotal.length - 1] - metaltotal[0]) / metaltotal[0]
+                    if (metaltotal[0] == 0)
                         perc = 0;
                     perc = (perc * 100).toFixed(1);
                     if (perc >= 0) {
@@ -1456,123 +1471,7 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                     }
                 }
             });
-        };
-
-
-        var getMySilver = function() {
-            var stackRef = userRef.child(currentUser).child("coinStack");
-            stackRef.child('silver').on("value", function(data) {
-                if (!data) {
-                    console.log("No coins found in Firebase");
-                    return;
-                }
-                var list = data.val();
-
-                for (var key in list) {
-                    if (!list.hasOwnProperty(key) || key == "total") {
-                        continue;
-                    }
-                    var coin = list[key];
-                    var coinPurch = coin['purchase_date'];
-                    var coinOzt = coin['total_weight_(ozt)'];
-                    var coinPurchDate = new Date(coinPurch);
-                    var currDate = new Date();
-                    var distanceDate = Math.floor((currDate - coinPurchDate) / (24 * 60 * 60 * 1000));
-                    for (i = 0; i < silvertotal.length && i < distanceDate + 1; i++) {
-                        silvertotal[silvertotal.length - 1 - i] += (coinOzt * silver1oz[i]);
-                    }
-                }
-                waitForTotal--;
-                if (waitForTotal == 0 && waitFor == 0) {
-                    drawGraph(graphsToDraw);
-                    calcdailychange();
-                }
-
-                if (page == "silver.html") {
-                    var perc = (silvertotal[silvertotal.length - 1] - silvertotal[silvertotal.length - 2]) / silvertotal[silvertotal.length - 2]
-                    if (silvertotal[silvertotal.length - 2] == 0)
-                        perc = 0;
-                    perc = (perc * 100).toFixed(1);
-                    if (perc >= 0) {
-                        $(".daily-change").addClass("pos-change");
-                        $(".daily-change").text("+" + perc + "%");
-                    } else {
-                        $(".daily-change").addClass("neg-change");
-                        $(".daily-change").text("-" + perc + "%");
-                    }
-
-                    var perc = (silvertotal[silvertotal.length - 1] - silvertotal[0]) / silvertotal[0]
-                    if (silvertotal[0] == 0)
-                        perc = 0;
-                    perc = (perc * 100).toFixed(1);
-                    if (perc >= 0) {
-                        $(".overall-change").addClass("pos-change");
-                        $(".overall-change").text("+" + perc + "%");
-                    } else {
-                        $(".overall-change").addClass("neg-change");
-                        $(".overall-change").text("-" + perc + "%");
-                    }
-                }
-            });
-        };
-
-
-        var getMyPlatinum = function() {
-            var stackRef = userRef.child(currentUser).child("coinStack");
-            stackRef.child('platinum').on("value", function(data) {
-                if (!data) {
-                    console.log("No coins found in Firebase");
-                    return;
-                }
-                var list = data.val();
-
-                for (var key in list) {
-                    if (!list.hasOwnProperty(key) || key == "total") {
-                        continue;
-                    }
-                    var coin = list[key];
-                    var coinPurch = coin['purchase_date'];
-                    var coinOzt = coin['total_weight_(ozt)'];
-                    var coinPurchDate = new Date(coinPurch);
-                    var currDate = new Date();
-                    var distanceDate = Math.floor((currDate - coinPurchDate) / (24 * 60 * 60 * 1000));
-                    for (i = 0; i < plattotal.length && i < distanceDate + 1; i++) {
-                        plattotal[plattotal.length - 1 - i] += (coinOzt * plat1oz[i]);
-                    }
-                }
-                waitForTotal--;
-                if (waitForTotal == 0 && waitFor == 0) {
-                    drawGraph(graphsToDraw);
-                    calcdailychange();
-                }
-
-                if (page == "platinum.html") {
-                    var perc = (plattotal[plattotal.length - 1] - plattotal[plattotal.length - 2]) / plattotal[plattotal.length - 2]
-                    if (plattotal[plattotal.length - 2] == 0)
-                        perc = 0;
-                    perc = (perc * 100).toFixed(1);
-                    if (perc >= 0) {
-                        $(".daily-change").addClass("pos-change");
-                        $(".daily-change").text("+" + perc + "%");
-                    } else {
-                        $(".daily-change").addClass("neg-change");
-                        $(".daily-change").text("-" + perc + "%");
-                    }
-
-                    var perc = (plattotal[plattotal.length - 1] - plattotal[0]) / plattotal[0]
-                    if (plattotal[0] == 0)
-                        perc = 0;
-                    perc = (perc * 100).toFixed(1);
-                    if (perc >= 0) {
-                        $(".overall-change").addClass("pos-change");
-                        $(".overall-change").text("+" + perc + "%");
-                    } else {
-                        $(".overall-change").addClass("neg-change");
-                        $(".overall-change").text("-" + perc + "%");
-                    }
-                }
-            });
-        };
+        }
 
         function getMetalJSON(json_url, metal) {
             var csvArr = [];
@@ -1586,8 +1485,6 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                     }
                 })
                 .done(function(csvdata) {
-                    //alert("\nData from "+json_url+":\n"+csvdata);
-                    //console.log("csvdata "+csvdata);
                     var csvArray = CSVToArray(csvdata, ",");
                     csvArray = csvArray.slice(1, csvArray.length - 1);
                     csvArray.reverse();
@@ -1602,9 +1499,6 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                     var csvarrayfirst = new Date(csvArray[0][0]);
                     var csvIter = 0;
                     while (xlabelfirst != ((csvarrayfirst.getMonth() + 1) + '-' + ('0' + csvarrayfirst.getDate()).slice(-2))) {
-
-                        //console.log(csvarrayfirst + " @ " + xlabelfirst);
-                        //console.log(xlabelfirst + " @ " + ((csvarrayfirst.getMonth()+1)+'-'+('0'+csvarrayfirst.getDate()).slice(-2)));
                         if (csvarrayfirst.valueOf() == new Date(csvArray[csvIter + 1][0]).valueOf()) {
                             csvIter++;
                             lastPrice = csvArray[csvIter][1];
@@ -1626,29 +1520,22 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                         }
                     }
 
-                    //alert(csvArray);
-                    //alert(xlabel);
-                    //alert(processedArray);
-                    //console.log(csvArray);
-                    //console.log(processedArray);
-
                     for (i = 0; i < preprocessedArray.length; i++) {
                         processedArray.push(preprocessedArray[i][1]);
                     }
 
-
                     switch (metal) {
                         case 'gold':
                             gold1oz = processedArray;
-                            getMyGold();
+                            getMyMetal("gold");
                             break;
                         case 'silver':
                             silver1oz = processedArray;
-                            getMySilver();
+                            getMyMetal("silver");
                             break;
                         case 'platinum':
                             plat1oz = processedArray;
-                            getMyPlatinum();
+                            getMyMetal("platinum");
                             break;
                     }
                     waitFor--;
@@ -1663,12 +1550,8 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                             });
                         }
                 })
-                .fail(function(xhr, textStatus, errorThrown) {
-                    //alert(xhr.responseText);
-                    //alert(textStatus);
-                });
+                .fail(function(xhr, textStatus, errorThrown) {});
         };
-
 
         // popMarketList()
         // used in home.html 
@@ -1720,12 +1603,8 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                         change >= 0 ? elmtChange.className = "pos-change" : elmtChange.className = "neg-change";
                     }
                 })
-                .fail(function(xhr, textStatus, errorThrown) {
-                    //alert(xhr.responseText);
-                    //alert(textStatus);
-                });
+                .fail(function(xhr, textStatus, errorThrown) {});
         };
-
 
         function getMetalPrice(metal, start, end) {
             var json_url = "https://www.quandl.com/api/v1/datasets/WSJ/"; // there is a daily limit of 50 connections for unregistered users. You can create an account and add your security token like: https://www.quandl.com/api/v1/datasets/WSJ/PL_MKT.csv?auth_token=933vrq6wUfABXEf_sgH7&trim_start=2015-05-01 However the security is updated daily. Also you can use your own, or third party proxy like http://websitescraper.herokuapp.com/?url=https://www.quandl.com/api/v1/datasets/WSJ/AU_EIB.csv for additional 50 connections. This proxy will accept any url and return you the data, also helping to deal with same origin policy
@@ -1748,14 +1627,11 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
         };
 
 
-        var path = window.location.pathname;
-        var page = path.split("/").pop();
-
+        //var path = window.location.pathname;
+        //var page = path.split("/").pop();
 
         // populate the market list in home.html
         popMarketList(page);
-
-
 
         // populate the graph 
         var daysBack = 31;
