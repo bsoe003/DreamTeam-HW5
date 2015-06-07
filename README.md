@@ -11,11 +11,11 @@ DreamTeam-HW
 
 ####TODO (Extra):
 * analytic tracking for common user actions
-* error tracking
 * Phonegap
 
 ####BUG:
 * cursor is not pointer (hand) when in mobile size (cursor still show up when it is on svg icon)
+* error tracking may not work when AdBlock is on.
 
 ####DONE:
 * Basic sign up and login feature 
@@ -23,3 +23,4 @@ DreamTeam-HW
 sh minify.sh
 ```
 * Minifying script for CSS and JS
+* error tracking
