@@ -9,6 +9,19 @@ To view the FINAL REPORT and DEVELOPERS GUIDE, please see:
 > dev_guide.PDF
 
 
+Extra Credit Completed
+---------------------------
+### Packaging/Deployment Step
+All of our CSS and Javascript is completely minified and is found in these two production files:
+> main.min.css, mian.min.js
+
+### Analytics
+> https://mixpanel.com/
+We utilized Mixpanel for our user analytics. What we focused on tracking for the current time being was broad navigation and how users were interacting with the flow from page to page.
+
+### Error Tracking
+> https://trackjs.com/
+We utilized TrackJS for error tracking. What we focused on keeping track for the current time being was simply any console log errors produced. This also gave us room to write our own console.error commands for any extra tracking we would want. 
 
 
 Application Description
