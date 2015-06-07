@@ -990,11 +990,6 @@ $(document).ready(function() {
             $(this).css({
                 "color": "white"
             });
-            $("#email").focus(function() {
-                $(this).css({
-                    "outline": "2px solid #68CEDE"
-                });
-            });
         }
     });
 

@@ -1120,13 +1120,98 @@ select {
 }
 /* * * * * * * * * * * * * * * *
  *                             *
+ *        EDIT PROFILE         *
+ *                             *
+ * * * * * * * * * * * * * * * */
+
+#main_edit_profile {
+    //margin-left: -100px;
+    margin-top: 10px;
+    padding-left: 0px;
+}
+
+#edit_profile_wrapper {
+    width: 500px;
+    //@include transform(translateY(50%));
+    margin-left: auto;
+    margin-right: auto;
+    .breadcrumb {
+        font-size: 1.2em;
+        height: 30px;
+        line-height: 30px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        width: 200px;
+        svg {
+            fill: $main-font;
+            width: 20px;
+            height: 20px;
+            position: relative;
+            top: 5px;
+        }
+        &:hover {
+            color: $main-accent;
+            svg {
+                fill: $main-accent;
+            }
+        }
+    }
+    span {
+        display: inline-block;
+        width: 98%;
+        height: 55px;
+        line-height: 55px;
+        text-align: center;
+        font-size: 1.3em;
+        margin-top: 0px;
+        //@include box-sizing(border-box);
+    }
+    #sign-in-section {
+        margin-left: 5px;
+        margin-right: auto;
+        input {
+            width: 80%;
+        }
+    }
+    #save {
+        clear: both;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        background: #397C86;
+        border: 1px solid #151515;
+        cursor: pointer;
+        &:hover {
+            border: 1px solid $main-accent;
+        }
+        color: white;
+        text-decoration: none;
+    }
+    #delete {
+        clear: both;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        background: #D5504C;
+        border: 1px solid #151515;
+        cursor: pointer;
+        margin-top: 15px;
+        height: 50px;
+        line-height: 50px;
+        &:hover {
+            border: 1px solid #FF7C75;
+        }
+        color: white;
+        text-decoration: none;
+    }
+}
+/* * * * * * * * * * * * * * * *
+ *                             *
  *     RESPONSIVE HANDLING     *
  *                             *
  * * * * * * * * * * * * * * * */
 
-@media screen and (max-width: 724px) {
-
-}
+@media screen and (max-width: 724px) {}
 
 @media screen and (max-width: 924px) {
     #sign-in-section {
@@ -1144,6 +1229,16 @@ select {
 }
 
 @media screen and (max-width: 1000px) {
+    #edit_profile_wrapper {
+        width: 375px;
+        #sign-in-section {
+            margin-left: 5px;
+            margin-right: auto;
+            input {
+                width: 76%;
+            }
+        }
+    }
     .social-button {
         cursor: pointer;
     }

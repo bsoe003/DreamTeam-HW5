@@ -11,12 +11,20 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <script src="./js/libraries.min.js"></script>
     <script src="./js/unify.min.js"></script>
+    <!-- BEGIN TRACKJS -->
+    <script type="text/javascript">
+    window._trackJs = {
+        token: 'e31b368a990947ae8efc6d01924cd827'
+    };
+    </script>
+    <script type="text/javascript" src="http://d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js" crossorigin="anonymous"></script>
+    <!-- END TRACKJS -->
     <title>New Item - BullionTracker</title>
 </head>
 
 <body>
     <!-- @concactus import: topnavpersist.html -->
-     <nav style="display: block; visibility: visible;">
+    <nav style="display: block; visibility: visible;">
         <svg class="icon-spinner2">
             <symbol id="icon-spinner2" viewBox="0 0 1024 1024">
                 <title>spinner2</title>
@@ -50,23 +58,22 @@
                     </symbol>
                     <use xlink:href="#icon-home2"></use>
                 </svg>
-    
                 <figcaption>Home</figcaption>
-            </figure>    
-        </a>  
-        <a href="gold.html"> 
+            </figure>
+        </a>
+        <a href="gold.html">
             <figure>
                 Au
                 <figcaption>My Gold</figcaption>
-            </figure>      
-        </a> 
-        <a href="silver.html"> 
+            </figure>
+        </a>
+        <a href="silver.html">
             <figure>
                 Ag
                 <figcaption>My Silver</figcaption>
-            </figure> 
+            </figure>
         </a>
-        <a href="platinum.html">       
+        <a href="platinum.html">
             <figure>
                 Pt
                 <figcaption>My Platinum</figcaption>
@@ -106,7 +113,7 @@
                     </div>
                 </a>
                 <section id="image_upload" class="coin_image">
-                    <input type="file" id="uploader"/>
+                    <input type="file" id="uploader" />
                     <div class="img_box" id="img_holder">
                         <div class="img_circle">Click to Add Image</div>
                     </div>
@@ -180,7 +187,7 @@
     <!-- @concactus import: footer.html -->
     <footer>
         &copy; 2015 BullionTracker
-    </footer> 
+    </footer>
     <!-- @concactus end -->
 </body>
 

@@ -11,12 +11,20 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <script src="./js/libraries.min.js"></script>
     <script src="./js/unify.min.js"></script>
+    <!-- BEGIN TRACKJS -->
+    <script type="text/javascript">
+    window._trackJs = {
+        token: 'e31b368a990947ae8efc6d01924cd827'
+    };
+    </script>
+    <script type="text/javascript" src="http://d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js" crossorigin="anonymous"></script>
+    <!-- END TRACKJS -->
     <title>Home - BullionTracker</title>
 </head>
 
 <body>
     <!-- @concactus import: topnavpersist.html -->
-     <nav style="display: block; visibility: visible;">
+    <nav style="display: block; visibility: visible;">
         <svg class="icon-spinner2">
             <symbol id="icon-spinner2" viewBox="0 0 1024 1024">
                 <title>spinner2</title>
@@ -37,7 +45,6 @@
         <div id="logout">Logout</div>
     </div>
     <!-- @concactus end -->
-    
     <input id="sidenav-selector" type="hidden" value="0" style="display: none">
     <!-- @concactus import: sidenav.html -->
     <aside>
@@ -51,23 +58,22 @@
                     </symbol>
                     <use xlink:href="#icon-home2"></use>
                 </svg>
-    
                 <figcaption>Home</figcaption>
-            </figure>    
-        </a>  
-        <a href="gold.html"> 
+            </figure>
+        </a>
+        <a href="gold.html">
             <figure>
                 Au
                 <figcaption>My Gold</figcaption>
-            </figure>      
-        </a> 
-        <a href="silver.html"> 
+            </figure>
+        </a>
+        <a href="silver.html">
             <figure>
                 Ag
                 <figcaption>My Silver</figcaption>
-            </figure> 
+            </figure>
         </a>
-        <a href="platinum.html">       
+        <a href="platinum.html">
             <figure>
                 Pt
                 <figcaption>My Platinum</figcaption>
@@ -79,15 +85,13 @@
     document.getElementsByTagName('aside')[0].getElementsByTagName('figure')[navSelection].className = 'nav-selected';
     </script>
     <!-- @concactus end -->
-
     <section class="main-section">
-
-
         <section class="coin_wrapper">
             <section class="overview-panel">
                 <section class="total-value">
                     <div class="total-dollars">Loading ... </div>
-                    <div class="total-change">+0.0%</div><br/>
+                    <div class="total-change">+0.0%</div>
+                    <br/>
                     <div class="total-label">My Total Coin Value</div>
                 </section>
                 <section class="mobile-toggle">
@@ -113,7 +117,6 @@
                 <section class="market-status">
                 </section>
                 <section class="market-list">
-
                     <a href="gold.html">
                         <section class="market-item-header">
                             Gold
@@ -132,7 +135,7 @@
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
-                            </tr>                    
+                            </tr>
                             <tr>
                                 <td>Bid</td>
                                 <td>Ask</td>
@@ -140,8 +143,6 @@
                             </tr>
                         </table>
                     </section>
-
-
                     <a href="gold.html">
                         <section class="market-item-header">
                             Silver
@@ -160,7 +161,7 @@
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
-                            </tr>                    
+                            </tr>
                             <tr>
                                 <td>Bid</td>
                                 <td>Ask</td>
@@ -186,7 +187,7 @@
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
-                            </tr>                    
+                            </tr>
                             <tr>
                                 <td>Bid</td>
                                 <td>Ask</td>
@@ -196,7 +197,6 @@
                     </section>
                 </section>
             </section>
-
             <section class="graph-panel">
                 <section class="chart-legend">
                     <div class="legend-left-half">
@@ -207,44 +207,40 @@
                         <section class="legend-item">
                             <div class="legend-item-color" id="legend-2"></div>
                             Platinum Total
-                        </section>            
+                        </section>
                         <section class="legend-item">
                             <div class="legend-item-color" id="legend-3"></div>
                             Silver Total
-                        </section>  
+                        </section>
                     </div>
-                    <div class="legend-right-half">      
+                    <div class="legend-right-half">
                         <section class="legend-item">
                             <div class="legend-item-color" id="legend-4"></div>
                             1oz Gold
-                        </section>            
+                        </section>
                         <section class="legend-item">
                             <div class="legend-item-color" id="legend-5"></div>
                             1oz Platinum
-                        </section>            
+                        </section>
                         <section class="legend-item">
                             <div class="legend-item-color" id="legend-6"></div>
                             1oz Silver
                         </section>
-                    </div>    
+                    </div>
                 </section>
                 <div class="chart-y-label">PRICE</div>
                 <div class="chart-x-label">DATE</div>
                 <section class="chart-wrap">
                     <canvas id="total-chart"></canvas>
                 </section>
-
             </section>
         </section>
-
     </section>
-
     <!-- @concactus import: footer.html -->
     <footer>
         &copy; 2015 BullionTracker
-    </footer> 
+    </footer>
     <!-- @concactus end -->
-
 </body>
 
 </html>
