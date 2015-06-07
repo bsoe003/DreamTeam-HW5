@@ -5,16 +5,16 @@
  *                             *
  * * * * * * * * * * * * * * * */
 
-@include font-face("robotolight", "../fonts/Roboto-Light", $file-formats: ttf eot);
-@include font-face("robotocon", "../fonts/RobotoCondensed-Regular", $file-formats: ttf eot);
-@include font-face("openlight", "../fonts/OpenSans-Light", $file-formats: ttf eot);
-@include font-face("openregular", "../fonts/OpenSans-Regular", $file-formats: ttf eot);
-@include font-face("opensemi", "../fonts/OpenSans-Semibold", $file-formats: ttf eot);
-@include font-face("raleway_r", "../fonts/Raleway-Regular", $file-formats: ttf eot);
-@include font-face("raleway_m", "../fonts/Raleway-Medium", $file-formats: ttf eot);
-@include font-face("monster_h", "../fonts/montserrat-hairline-webfont", $file-formats: ttf eot);
-@include font-face("monster_l", "../fonts/montserrat-light-webfont", $file-formats: ttf eot);
-@include font-face("monster_r", "../fonts/montserrat-regular-webfont", $file-formats: ttf eot);
+ @include font-face("robotolight", "../fonts/Roboto-Light", $file-formats: ttf eot);
+ @include font-face("robotocon", "../fonts/RobotoCondensed-Regular", $file-formats: ttf eot);
+ @include font-face("openlight", "../fonts/OpenSans-Light", $file-formats: ttf eot);
+ @include font-face("openregular", "../fonts/OpenSans-Regular", $file-formats: ttf eot);
+ @include font-face("opensemi", "../fonts/OpenSans-Semibold", $file-formats: ttf eot);
+ @include font-face("raleway_r", "../fonts/Raleway-Regular", $file-formats: ttf eot);
+ @include font-face("raleway_m", "../fonts/Raleway-Medium", $file-formats: ttf eot);
+ @include font-face("monster_h", "../fonts/montserrat-hairline-webfont", $file-formats: ttf eot);
+ @include font-face("monster_l", "../fonts/montserrat-light-webfont", $file-formats: ttf eot);
+ @include font-face("monster_r", "../fonts/montserrat-regular-webfont", $file-formats: ttf eot);
 /* SASS VARIABLES */
 
 $main-background: #1D1D1D;
@@ -41,7 +41,7 @@ $graph-purple: #C29FFF;
  *                             *
  * * * * * * * * * * * * * * * */
 
-* {
+ * {
     margin: 0;
     padding: 0;
 }
@@ -169,20 +169,43 @@ nav {
     box-shadow: 0px 2px 5px $main-background;
     overflow: hidden;
     height: 0;
-    #logout {
+
+    div{
         width: 75%;
-        margin: 0 auto;
-        margin-top: 80px;
+        margin: 0 auto;    
+        margin-top: 20px;    
         text-align: center;
         height: 40px;
         line-height: 40px;
-        font-size: 1.5em;
-        background: #34727C;
+        font-size: 1.3em;
         cursor: pointer;
-        &:hover {
-            background: #48A1B0;
-        }
     }
+
+    #logout {
+       background: #A2433E;
+
+       &:hover {
+        background: #C8534C;
+    }
+}
+
+#change-email{
+    display: none;
+    background: #34727C;
+
+    &:hover {
+        background: #48A1B0;
+    }
+}
+
+#change-pw{
+    display: none;
+    background: #34727C;
+
+    &:hover {
+        background: #48A1B0;
+    }
+}
 }
 /* SIDE NAV */
 
@@ -270,7 +293,7 @@ footer {
  *                             *
  * * * * * * * * * * * * * * * */
 
-.coin_wrapper {
+ .coin_wrapper {
     padding: 40px 40px;
 }
 
@@ -287,7 +310,7 @@ a {
  *                             *
  * * * * * * * * * * * * * * * */
 
-#w1-wrapper {
+ #w1-wrapper {
     text-align: center;
     padding-top: 0px;
     &>section {
@@ -511,7 +534,7 @@ a {
  *                             *
  * * * * * * * * * * * * * * * */
 
-.overview-panel {
+ .overview-panel {
     display: inline-block;
     vertical-align: top;
     width: 300px;
@@ -717,7 +740,7 @@ a {
  *                             *
  * * * * * * * * * * * * * * * */
 
-.current_gold {
+ .current_gold {
     margin-top: -24px;
     margin-left: 140px;
     margin-bottom: 0;
@@ -807,7 +830,7 @@ a {
  *                             *
  * * * * * * * * * * * * * * * */
 
-.coin_main {
+ .coin_main {
     width: 100%;
     height: 100%;
     position: relative;
@@ -1043,7 +1066,7 @@ strong {
  *                             *
  * * * * * * * * * * * * * * * */
 
-input {
+ input {
     background-color: $input-bg-color;
     width: 125px;
     height: 27px;
@@ -1124,7 +1147,7 @@ select {
  *                             *
  * * * * * * * * * * * * * * * */
 
-#main_edit_profile {
+ #main_edit_profile {
     //margin-left: -100px;
     margin-top: 10px;
     padding-left: 0px;
@@ -1211,9 +1234,9 @@ select {
  *                             *
  * * * * * * * * * * * * * * * */
 
-@media screen and (max-width: 724px) {}
+ @media screen and (max-width: 724px) {}
 
-@media screen and (max-width: 924px) {
+ @media screen and (max-width: 924px) {
     #sign-in-section {
         margin-top: -10px;
     }

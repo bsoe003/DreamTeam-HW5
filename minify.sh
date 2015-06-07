@@ -20,7 +20,7 @@ echo "Combining all JS to main.js"
 cat js/*.js > main.js
 
 echo "Minifying main.js to main.min.js"
-uglifyjs -o main.min.js -c -- main.js 2> /dev/null
+uglifyjs -o main.min.js -c -- main.js 
 echo "Minifying style.css to style.min.css"
 uglifycss main.css > main.min.css 2> /dev/null
 echo "Removing main.css"

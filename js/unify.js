@@ -16,11 +16,11 @@ var page = path.split("/").pop();
  * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 
-var invalidDateInput = false;
-var invalidQtyInput = false;
-var invalidWPUInput = false;
+ var invalidDateInput = false;
+ var invalidQtyInput = false;
+ var invalidWPUInput = false;
 
-$(window).load(function() {
+ $(window).load(function() {
 
     var path = window.location.pathname;
     var page = path.split("/").pop();
@@ -31,16 +31,16 @@ $(window).load(function() {
      *                         *
      * * * * * * * * * * * * * */
 
-    $('.icon-spinner2').click(function() {
+     $('.icon-spinner2').click(function() {
         location.reload();
     });
 
-    $("#coinStack").on("click", "tr", function() {
+     $("#coinStack").on("click", "tr", function() {
         $(this).find('a')[0].click();
     });
 
-    var settingsOpen = false;
-    $('.icon-cog').click(function() {
+     var settingsOpen = false;
+     $('.icon-cog').click(function() {
         if (settingsOpen) {
             $(this).velocity('stop').velocity({
                 rotateZ: '0deg',
@@ -78,11 +78,11 @@ $(window).load(function() {
      *     MOBILE HANDLING     *
      *                         *
      * * * * * * * * * * * * * */
-    var winWidth = $(window).width();
-    var winHeight = $(window).height();
+     var winWidth = $(window).width();
+     var winHeight = $(window).height();
 
 
-    $('.mtb-1').click(function() {
+     $('.mtb-1').click(function() {
         $('.graph-panel').removeClass('graph-panel-show');
         $('.market-status').fadeIn(0);
         $('.market-list').fadeIn(0);
@@ -93,7 +93,7 @@ $(window).load(function() {
 
     });
 
-    $('.mtb-2').click(function() {
+     $('.mtb-2').click(function() {
         $('.market-status').fadeOut(0);
         $('.market-list').fadeOut(0);
         if (page == "gold.html")
@@ -104,7 +104,7 @@ $(window).load(function() {
         drawGraph();
     });
 
-    var resizer = function() {
+     var resizer = function() {
         if (winWidth > 999) {
             $('.graph-panel').removeClass('graph-panel-show');
             $('.market-status').fadeIn(0);
@@ -124,9 +124,9 @@ $(window).load(function() {
      *       EDIT HANDLING     *
      *                         *
      * * * * * * * * * * * * * */
-    var editOpen = false;
+     var editOpen = false;
 
-    $('#edit').click(function() {
+     $('#edit').click(function() {
         var msTop = $('.main-section').css('padding-top');
         var msLeft = $('.main-section').css('padding-left');
         var msBottom = $('.main-section').css('padding-bottom');
@@ -157,7 +157,7 @@ $(window).load(function() {
         }, 400);
     });
 
-    $('#icon-close').click(function() {
+     $('#icon-close').click(function() {
         editOpen = false;
         $('#coin_edit').velocity({
             top: $('#edit').offset().top - $(window).scrollTop(),
@@ -174,7 +174,7 @@ $(window).load(function() {
     });
 
 
-    $(window).scroll(function() {
+     $(window).scroll(function() {
         if (editOpen) {
             $('#coin_edit_wrapper').velocity({
                 translateY: -$(window).scrollTop()
@@ -187,8 +187,8 @@ $(window).load(function() {
      *    ADD HANDLING/DATE    *
      *                         *
      * * * * * * * * * * * * * */
-    var defaultDate = new Date();
-    var defaultDateInput = ('0' + (defaultDate.getMonth() + 1)).slice(-2) + '-' + ('0' + defaultDate.getDate()).slice(-2) + '-' + defaultDate.getFullYear();
+     var defaultDate = new Date();
+     var defaultDateInput = ('0' + (defaultDate.getMonth() + 1)).slice(-2) + '-' + ('0' + defaultDate.getDate()).slice(-2) + '-' + defaultDate.getFullYear();
     //document.getElementsByName('purchase_date')[0].value = defaultDateInput;
     $(".purchase_date").val(defaultDateInput);
 
@@ -200,8 +200,8 @@ $(window).load(function() {
         var y = matches[3];
         var composedDate = new Date(y, m, d);
         return composedDate.getDate() == d &&
-            composedDate.getMonth() == m &&
-            composedDate.getFullYear() == y;
+        composedDate.getMonth() == m &&
+        composedDate.getFullYear() == y;
     }
 
 
@@ -254,7 +254,7 @@ $(window).load(function() {
      *                         *
      * * * * * * * * * * * * * */
 
-    var tableData = {
+     var tableData = {
         "Gold": {
             "US Eagle": {
                 "metal_percent": "0.99"
@@ -307,34 +307,34 @@ $(window).load(function() {
             var property = tr[i].getElements("td")[0];
             switch (property.innerHTML) {
                 case 'Metal':
-                    metal = tr[i].getElements("td")[1].getElements("select")[0].value;
-                    break;
+                metal = tr[i].getElements("td")[1].getElements("select")[0].value;
+                break;
                 case 'Type':
-                    bartype = tr[i].getElements("td")[1].getElements("select")[0].value;
-                    break;
+                bartype = tr[i].getElements("td")[1].getElements("select")[0].value;
+                break;
                 case 'Qty.':
-                    qty = tr[i].getElements("td")[1].getElements("input")[0].value;
-                    break;
+                qty = tr[i].getElements("td")[1].getElements("input")[0].value;
+                break;
                 case 'Weight per unit (ozt)':
-                    wpu = tr[i].getElements("td")[1].getElements("input")[0].value;
-                    break;
+                wpu = tr[i].getElements("td")[1].getElements("input")[0].value;
+                break;
             }
 
         }
 
         switch (metal) {
             case 'Gold':
-                $("#total-metal").text("Total au (ozt)");
-                $("#metal-perc").text("Gold %");
-                break;
+            $("#total-metal").text("Total au (ozt)");
+            $("#metal-perc").text("Gold %");
+            break;
             case 'Silver':
-                $("#total-metal").text("Total ag (ozt)");
-                $("#metal-perc").text("Silver %");
-                break;
+            $("#total-metal").text("Total ag (ozt)");
+            $("#metal-perc").text("Silver %");
+            break;
             case 'Platinum':
-                $("#total-metal").text("Total pt (ozt)");
-                $("#metal-perc").text("Platinum %");
-                break;
+            $("#total-metal").text("Total pt (ozt)");
+            $("#metal-perc").text("Platinum %");
+            break;
         }
 
         $("#metal-perc").next().text((tableData[metal][bartype]['metal_percent']));
@@ -407,15 +407,15 @@ $(window).load(function() {
 
 
 
-var firebase = new Firebase("https://134b-dreamteam.firebaseio.com/");
-var userRef = firebase.child("users");
-var userCollected = false;
-var inSession = false;
-var currentUser = "";
-var simple_email = "";
-var simple_password = "";
-var users = [];
-const API_URL = "https://www.quandl.com/api/v1/datasets/WSJ/";
+ var firebase = new Firebase("https://134b-dreamteam.firebaseio.com/");
+ var userRef = firebase.child("users");
+ var userCollected = false;
+ var inSession = false;
+ var currentUser = "";
+ var simple_email = "";
+ var simple_password = "";
+ var users = [];
+ const API_URL = "https://www.quandl.com/api/v1/datasets/WSJ/";
 
 // create string contains function
 String.prototype.contains = function(s) {
@@ -426,11 +426,11 @@ String.prototype.contains = function(s) {
 Node.prototype.getElements = function(s) {
     switch (s.charAt(0)) {
         case "#":
-            return this.getElementById(s.substring(1));
+        return this.getElementById(s.substring(1));
         case ".":
-            return this.getElementsByClassName(s.substring(1));
+        return this.getElementsByClassName(s.substring(1));
         default:
-            return this.getElementsByTagName(s);
+        return this.getElementsByTagName(s);
     }
 }
 
@@ -507,14 +507,14 @@ function customSignup(email, password) {
         if (error) {
             switch (error.code) {
                 case "EMAIL_TAKEN":
-                    console.log("The new user account cannot be created because the email is already in use.");
-                    alert("This email is already taken. Please Try Again");
-                    return;
+                console.log("The new user account cannot be created because the email is already in use.");
+                alert("This email is already taken. Please Try Again");
+                return;
                 case "INVALID_EMAIL":
-                    console.log("The specified email is not a valid email.");
-                    break;
+                console.log("The specified email is not a valid email.");
+                break;
                 default:
-                    console.log("Error creating user:", error);
+                console.log("Error creating user:", error);
             }
             $("#password").val("");
         } else {
@@ -569,13 +569,13 @@ function changeEmail(old_email, new_email) {
         if (error) {
             switch (error.code) {
                 case "INVALID_PASSWORD":
-                    console.log("The specified user account password is incorrect.");
-                    break;
+                console.log("The specified user account password is incorrect.");
+                break;
                 case "INVALID_USER":
-                    console.log("The specified user account does not exist.");
-                    break;
+                console.log("The specified user account does not exist.");
+                break;
                 default:
-                    console.log("Error creating user:", error);
+                console.log("Error creating user:", error);
             }
         } else {
             console.log("User email changed successfully!");
@@ -598,13 +598,13 @@ function changePassword(old_password, new_password) {
         if (error) {
             switch (error.code) {
                 case "INVALID_PASSWORD":
-                    alert("The specified user account password is incorrect.");
-                    break;
+                alert("The specified user account password is incorrect.");
+                break;
                 case "INVALID_USER":
-                    alert("The specified user account does not exist.");
-                    break;
+                alert("The specified user account does not exist.");
+                break;
                 default:
-                    console.log("Error changing password:", error);
+                console.log("Error changing password:", error);
             }
         } else {
             console.log("User password changed successfully!");
@@ -629,13 +629,13 @@ function deleteUser() {
         if (error) {
             switch (error.code) {
                 case "INVALID_USER":
-                    alert("The specified user account does not exist.");
-                    break;
+                alert("The specified user account does not exist.");
+                break;
                 case "INVALID_PASSWORD":
-                    alert("The specified user account password is incorrect.");
-                    break;
+                alert("The specified user account password is incorrect.");
+                break;
                 default:
-                    console.log("Error removing user:", error);
+                console.log("Error removing user:", error);
             }
         } else {
             alert("User account deleted successfully!");
@@ -702,11 +702,11 @@ function getMetalURL(metal) {
     var data_url = API_URL;
     switch (metal.toLowerCase()) {
         case "silver":
-            return API_URL + "AG_EIB.json";
+        return API_URL + "AG_EIB.json";
         case "platinum":
-            return API_URL + "PL_MKT.json";
+        return API_URL + "PL_MKT.json";
         default:
-            return API_URL + "AU_EIB.json";
+        return API_URL + "AU_EIB.json";
     }
 }
 
@@ -787,17 +787,17 @@ StackManager.prototype.addCoin = function(newStack) {
     // set reference to particular metal
     switch (newStack.metal) {
         case "Gold":
-            metalRef = this.stackRef.child("gold");
-            break;
+        metalRef = this.stackRef.child("gold");
+        break;
         case "Silver":
-            metalRef = this.stackRef.child("silver");
-            break;
+        metalRef = this.stackRef.child("silver");
+        break;
         case "Platinum":
-            metalRef = this.stackRef.child("platinum");
-            break;
+        metalRef = this.stackRef.child("platinum");
+        break;
         default:
-            metalRef = null
-            return;
+        metalRef = null
+        return;
     }
 
     metalRef.push(newStack); // put new coin information
@@ -835,8 +835,8 @@ StackManager.prototype.read = function() {
 
             // array of information to be inserted
             var data = ["<div class=\"coin_mini\"></div>",
-                "<a href=\"" + metal + "_detail.html?id=" + key + "\"></a>" + coin["type"],
-                coin["qty"], coin["total_weight_(ozt)"], coin["purchase_date"], coin["total"]
+            "<a href=\"" + metal + "_detail.html?id=" + key + "\"></a>" + coin["type"],
+            coin["qty"], coin["total_weight_(ozt)"], coin["purchase_date"], coin["total"]
             ];
 
             // construct td's for this row
@@ -871,17 +871,17 @@ StackManager.prototype.total = function() {
     //var metal = this.coinInfo.type;
     switch (this.metal) {
         case "gold":
-            reference = this.stackRef.child("gold");
-            break;
+        reference = this.stackRef.child("gold");
+        break;
         case "silver":
-            reference = this.stackRef.child("silver");
-            break;
+        reference = this.stackRef.child("silver");
+        break;
         case "platinum":
-            reference = this.stackRef.child("platinum");
-            break;
+        reference = this.stackRef.child("platinum");
+        break;
         default:
-            reference = null;
-            break;
+        reference = null;
+        break;
     }
 
     // check for reference and perform appropriat total calculation
@@ -1065,7 +1065,7 @@ StackManager.prototype.deleteCoin = function(query) {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-$(document).ready(function() {
+ $(document).ready(function() {
     var stack = new StackManager();
     var metal = stack.toString();
     var imgBase = "";
@@ -1295,6 +1295,16 @@ $(document).ready(function() {
         stack.total();
         getEmail();
     }
+
+    // More stuff and things
+
+    if(inSession) {
+
+        if(currentUser.contains("simplelogin")) {
+            document.getElementById("change-email").style.display = 'block';
+            document.getElementById("change-pw").style.display = 'block';
+        }
+    }
 });
 
 
@@ -1315,7 +1325,7 @@ $(document).ready(function() {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
+ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
     $(document).ready(function() {
 
         // draws a graph for the page
@@ -1562,13 +1572,13 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                     "([^\"\\" + strDelimiter + "\\r\\n]*))"
                 ),
                 "gi"
-            );
+                );
 
 
             // Create an array to hold our data. Give the array
             // a default empty first row.
             var arrData = [
-                []
+            []
             ];
 
             // Create an array to hold our individual pattern
@@ -1590,7 +1600,7 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                 if (
                     strMatchedDelimiter.length &&
                     strMatchedDelimiter !== strDelimiter
-                ) {
+                    ) {
 
                     // Since we have reached a new row of data,
                     // add an empty row to our data array.
@@ -1610,7 +1620,7 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                     strMatchedValue = arrMatches[2].replace(
                         new RegExp("\"\"", "g"),
                         "\""
-                    );
+                        );
 
                 } else {
                     // We found a non-quoted value.
@@ -1629,10 +1639,18 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
 
         var calcdailychange = function() {
             if (page == "home.html") {
-                for (i = 0; i < plattotal.length; i++)
-                    alltotal.push(goldtotal[i] + silvertotal[i] + plattotal[i]);
-                var perc = (alltotal[alltotal.length - 1] - alltotal[alltotal.length - 2]) / alltotal[alltotal.length - 2]
-                if (alltotal[alltotal.length - 2] == 0)
+                for (i = 0; i < plattotal.length; i++){
+                    var a = goldtotal[i] == null ? 0 : goldtotal[i];
+                    var b = silvertotal[i] == null ? 0 : silvertotal[i];
+                    var c = plattotal[i] == null ? 0 : plattotal[i];
+                    if ( (a+b+c)== 0)
+                        alltotal.push(null);
+                    else
+                        alltotal.push(a + b + c);
+
+                }
+                var perc = (alltotal[alltotal.length - 1] - alltotal[alltotal.length - 2]) / alltotal[alltotal.length - 2];
+                if (alltotal[alltotal.length - 2] == 0 || alltotal[alltotal.length - 2] == null)
                     perc = 0;
                 perc = (perc * 100).toFixed(1);
                 if (perc >= 0) {
@@ -1649,19 +1667,19 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
             var stackRef = userRef.child(currentUser).child("coinStack");
             switch (metal.toLowerCase()) {
                 case "gold":
-                    metaltotal = goldtotal.slice();
-                    metal1oz = gold1oz.slice();
-                    break;
+                metaltotal = goldtotal.slice();
+                metal1oz = gold1oz.slice();
+                break;
                 case "silver":
-                    metaltotal = silvertotal.slice();
-                    metal1oz = silver1oz.slice();
-                    break;
+                metaltotal = silvertotal.slice();
+                metal1oz = silver1oz.slice();
+                break;
                 case "platinum":
-                    metaltotal = plattotal.slice();
-                    metal1oz = plat1oz.slice();
-                    break;
+                metaltotal = plattotal.slice();
+                metal1oz = plat1oz.slice();
+                break;
                 default:
-                    return;
+                return;
             }
             //console.log(goldtotal);
             stackRef.child(metal).on("value", function(data) {
@@ -1686,19 +1704,19 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                     }
                     switch (metal.toLowerCase()) {
                         case "gold":
-                            goldtotal = metaltotal.slice();
-                            gold1oz = metal1oz.slice();
-                            break;
+                        goldtotal = metaltotal.slice();
+                        gold1oz = metal1oz.slice();
+                        break;
                         case "silver":
-                            silvertotal = metaltotal.slice();
-                            silver1oz = metal1oz.slice();
-                            break;
+                        silvertotal = metaltotal.slice();
+                        silver1oz = metal1oz.slice();
+                        break;
                         case "platinum":
-                            plattotal = metaltotal.slice();
-                            plat1oz = metal1oz.slice();
-                            break;
+                        plattotal = metaltotal.slice();
+                        plat1oz = metal1oz.slice();
+                        break;
                         default:
-                            return;
+                        return;
                     }
                 }
                 waitForTotal--;
@@ -1709,8 +1727,13 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
 
 
                 if (page == metal + ".html") {
-                    var perc = (metaltotal[metaltotal.length - 1] - metaltotal[metaltotal.length - 2]) / metaltotal[metaltotal.length - 2]
-                    if (metaltotal[metaltotal.length - 2] == 0)
+                    var a = metaltotal[metaltotal.length-1] == null ? 0 : metaltotal[metaltotal.length-1];
+                    var b = metaltotal[metaltotal.length-2] == null ? 0 : metaltotal[metaltotal.length-2];
+                    var c = metaltotal[0] == null ? 0 : metaltotal[0];
+
+
+                    var perc = (a - b) / b
+                    if (b == 0)
                         perc = 0;
                     perc = (perc * 100).toFixed(1);
                     if (perc >= 0) {
@@ -1721,8 +1744,8 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                         $(".daily-change").text("-" + perc + "%");
                     }
 
-                    var perc = (metaltotal[metaltotal.length - 1] - metaltotal[0]) / metaltotal[0]
-                    if (metaltotal[0] == 0)
+                    var perc = (a - c) / c;
+                    if (c == 0)
                         perc = 0;
                     perc = (perc * 100).toFixed(1);
                     if (perc >= 0) {
@@ -1734,26 +1757,26 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                     }
                 }
             });
+}
+
+function getMetalJSON(json_url, metal) {
+    var csvArr = [];
+    $.ajax({
+        type: "GET",
+        dataType: 'text',
+        url: json_url,
+        crossDomain: true,
+        xhrFields: {
+            withCredentials: false
         }
+    })
+    .done(function(csvdata) {
+        var csvArray = CSVToArray(csvdata, ",");
+        csvArray = csvArray.slice(1, csvArray.length - 1);
+        csvArray.reverse();
 
-        function getMetalJSON(json_url, metal) {
-            var csvArr = [];
-            $.ajax({
-                    type: "GET",
-                    dataType: 'text',
-                    url: json_url,
-                    crossDomain: true,
-                    xhrFields: {
-                        withCredentials: false
-                    }
-                })
-                .done(function(csvdata) {
-                    var csvArray = CSVToArray(csvdata, ",");
-                    csvArray = csvArray.slice(1, csvArray.length - 1);
-                    csvArray.reverse();
-
-                    var preprocessedArray = [];
-                    var processedArray = [];
+        var preprocessedArray = [];
+        var processedArray = [];
 
 
                     // catch up with xlabel first date
@@ -1789,17 +1812,17 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
 
                     switch (metal) {
                         case 'gold':
-                            gold1oz = processedArray;
-                            getMyMetal("gold");
-                            break;
+                        gold1oz = processedArray;
+                        getMyMetal("gold");
+                        break;
                         case 'silver':
-                            silver1oz = processedArray;
-                            getMyMetal("silver");
-                            break;
+                        silver1oz = processedArray;
+                        getMyMetal("silver");
+                        break;
                         case 'platinum':
-                            plat1oz = processedArray;
-                            getMyMetal("platinum");
-                            break;
+                        plat1oz = processedArray;
+                        getMyMetal("platinum");
+                        break;
                     }
                     waitFor--;
                     if (waitForTotal == 0 && waitFor == 0)
@@ -1812,47 +1835,47 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                                 "platinum": plat1oz[plat1oz.length - 1],
                             });
                         }
-                })
-                .fail(function(xhr, textStatus, errorThrown) {});
-        };
+                    })
+.fail(function(xhr, textStatus, errorThrown) {});
+};
 
         // popMarketList()
         // used in home.html 
         // populates the bid/ask/change data for the market-item-stats
         function popMarketList(page) {
             $.ajax({
-                    type: "GET",
-                    dataType: 'text',
-                    url: "https://cse134b.herokuapp.com/jm",
-                    crossDomain: true,
-                    xhrFields: {
-                        withCredentials: false
-                    }
-                })
-                .done(function(csvdata) {
-                    var jsonAB = eval(csvdata);
-                    if (page == "home.html") {
-                        for (var i = 0; i < 3; i++) {
-                            var bid = jsonAB[i].bid;
-                            var ask = jsonAB[i].ask;
-                            var change = jsonAB[i].oneDayChange;
-                            var header = document.getElementsByClassName("market-item-stats");
-                            header[i].getElementsByTagName('td')[0].innerHTML = bid;
-                            header[i].getElementsByTagName('td')[1].innerHTML = ask;
-                            var elmtChange = header[i].getElementsByTagName('td')[2];
-                            elmtChange.innerHTML = change;
-                            change >= 0 ? elmtChange.className = "pos-change" : elmtChange.className = "neg-change";
+                type: "GET",
+                dataType: 'text',
+                url: "https://cse134b.herokuapp.com/jm",
+                crossDomain: true,
+                xhrFields: {
+                    withCredentials: false
+                }
+            })
+            .done(function(csvdata) {
+                var jsonAB = eval(csvdata);
+                if (page == "home.html") {
+                    for (var i = 0; i < 3; i++) {
+                        var bid = jsonAB[i].bid;
+                        var ask = jsonAB[i].ask;
+                        var change = jsonAB[i].oneDayChange;
+                        var header = document.getElementsByClassName("market-item-stats");
+                        header[i].getElementsByTagName('td')[0].innerHTML = bid;
+                        header[i].getElementsByTagName('td')[1].innerHTML = ask;
+                        var elmtChange = header[i].getElementsByTagName('td')[2];
+                        elmtChange.innerHTML = change;
+                        change >= 0 ? elmtChange.className = "pos-change" : elmtChange.className = "neg-change";
 
-                        }
-                    } else {
-                        var i;
-                        if (page == "gold.html")
-                            i = 0;
-                        else if (page == "silver.html")
-                            i = 1;
-                        else if (page == "platinum.html")
-                            i = 2;
-                        else
+                    }
+                } else {
+                    var i;
+                    if (page == "gold.html")
+                        i = 0;
+                    else if (page == "silver.html")
+                        i = 1;
+                    else if (page == "platinum.html")
+                        i = 2;
+                    else
                             return; // don't populate this stuff otherwise
 
                         var bid = jsonAB[i].bid;
@@ -1866,21 +1889,21 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
                         change >= 0 ? elmtChange.className = "pos-change" : elmtChange.className = "neg-change";
                     }
                 })
-                .fail(function(xhr, textStatus, errorThrown) {});
-        };
+.fail(function(xhr, textStatus, errorThrown) {});
+};
 
-        function getMetalPrice(metal, start, end) {
+function getMetalPrice(metal, start, end) {
             var json_url = "https://www.quandl.com/api/v1/datasets/WSJ/"; // there is a daily limit of 50 connections for unregistered users. You can create an account and add your security token like: https://www.quandl.com/api/v1/datasets/WSJ/PL_MKT.csv?auth_token=933vrq6wUfABXEf_sgH7&trim_start=2015-05-01 However the security is updated daily. Also you can use your own, or third party proxy like http://websitescraper.herokuapp.com/?url=https://www.quandl.com/api/v1/datasets/WSJ/AU_EIB.csv for additional 50 connections. This proxy will accept any url and return you the data, also helping to deal with same origin policy
             switch (metal) {
                 case 'gold':
-                    json_url += "AU_EIB";
-                    break;
+                json_url += "AU_EIB";
+                break;
                 case 'silver':
-                    json_url += "AG_EIB";
-                    break;
+                json_url += "AG_EIB";
+                break;
                 case 'platinum':
-                    json_url += "PL_MKT";
-                    break;
+                json_url += "PL_MKT";
+                break;
             }
             json_url += ".csv?auth_token=WhJThfjMzZMAu-2CQK5-&trim_start=" + start;
             if (end) {
@@ -1907,9 +1930,9 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
         for (i = 0; i < daysBack; i++) {
             xlabel[daysBack - i - 1] = (xlabeldate.getMonth() + 1) + '-' + ('0' + xlabeldate.getDate()).slice(-2);
             xlabeldate.setDate(xlabeldate.getDate() - 1);
-            goldtotal.push(0);
-            silvertotal.push(0);
-            plattotal.push(0);
+            goldtotal.push(null);
+            silvertotal.push(null);
+            plattotal.push(null);
         }
 
 
@@ -1940,3 +1963,4 @@ if ((page.indexOf("add") == -1) && (page.indexOf("detail") == -1))
         }
 
     });
+
