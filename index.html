@@ -20,6 +20,9 @@
     </script>
     <script type="text/javascript" src="http://d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js" crossorigin="anonymous"></script>
     <!-- END TRACKJS -->
+    <!-- start Mixpanel --><script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+    for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+mixpanel.init("f6e6b1628dab14bf1ba7417d2421555a");</script><!-- end Mixpanel -->
     <title>Login - BullionTracker</title>
 </head>
 
@@ -58,7 +61,17 @@
             </section>
             <!--<a href="wire2.html">-->
             <span id="sign-up-button">Sign up</span>
+            <script type="text/javascript">
+                mixpanel.track_links("#sign-up-button span", "click sign up button", {
+                    "referrer": document.referrer
+                });
+            </script>
             <span id="log-in-button">Login</span>
+            <script type="text/javascript">
+                mixpanel.track_links("#log-in-button span", "click log in button", {
+                    "referrer": document.referrer
+                });
+            </script>
             <div id="social-login-wrapper"><span>OR Login With:</span></div>
             <span class="social-button" id="google-button">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 96.828 96.827" style="enable-background:new 0 0 96.828 96.827;" xml:space="preserve">
@@ -70,6 +83,11 @@
                     </g>
                 </svg>
             </span>
+            <script type="text/javascript">
+                mixpanel.track_links("#google-button span", "click google login", {
+                    "referrer": document.referrer
+                });
+            </script>
             <span class="social-button" id="facebook-button">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 96.124 96.123" style="enable-background:new 0 0 96.124 96.123;" xml:space="preserve">
                     <g>
@@ -77,6 +95,11 @@
                     </g>
                 </svg>
             </span>
+            <script type="text/javascript">
+                mixpanel.track_links("#facebook-button span", "click facebook login", {
+                    "referrer": document.referrer
+                });
+            </script>
             <span class="social-button" id="twitter-button">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 147.441 612 497.119" enable-background="new 0 147.441 612 497.119" xml:space="preserve">
                     <g>
@@ -86,6 +109,11 @@
                     </g>
                 </svg>
             </span>
+            <script type="text/javascript">
+                mixpanel.track_links("#twitter-button span", "click twitter login", {
+                    "referrer": document.referrer
+                });
+            </script>
         </section>
         <section id="w1-right">
             <div id="iphone">
