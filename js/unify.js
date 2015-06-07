@@ -486,7 +486,7 @@ function providerLogin(provider, oauthOption) {
             };
             userRef.child(uid).set(authData);
             users.push(uid);
-            userRef.child(uid).push()
+            //userRef.child(uid).push()
         }
     };
 
@@ -498,21 +498,61 @@ function providerLogin(provider, oauthOption) {
     }
 }
 
-function customLogin(email, password) {
+function customSignup(email, password) {
     userRef.createUser({
         email: email,
         password: password
-    }, function() {
-        userRef.authWithPassword({
-            email: email,
-            password: password
-        }, function(error, authData) {
-            if (error) {
-                console.log("Login Failed!", error);
-            } else {
-                console.log("Authenticated successfully with payload:", authData);
+    }, function(error, authData) {
+        if (error) {
+            switch (error.code) {
+                case "EMAIL_TAKEN":
+                    console.log("The new user account cannot be created because the email is already in use.");
+                    alert("This email is already taken. Please Try Again");
+                    return;
+                case "INVALID_EMAIL":
+                    console.log("The specified email is not a valid email.");
+                    break;
+                default:
+                    console.log("Error creating user:", error);
             }
-        });
+            $("#password").val("");
+        } else {
+            console.log("Successfully created user account with uid:", authData.uid);
+            alert("sign up successful");
+            var userExists = false;
+            var uid = authData.uid;
+            for (var i = 0; i < users.length; i++) {
+                if (users[i] == uid) {
+                    userExists = true;
+                    break;
+                }
+            }
+            if (!userExists) {
+                authData['today_prices'] = {
+                    'gold': 'loading...',
+                    'silver': 'loading...',
+                    'platinum': 'loading...',
+                };
+                userRef.child(uid).set(authData);
+                users.push(uid);
+            }
+        }
+        customLogin(email, password);
+    });
+}
+
+function customLogin(email, password) {
+    userRef.authWithPassword({
+        email: email,
+        password: password
+    }, function(error, authData) {
+        if (error) {
+            console.log("Login Failed!", error);
+            alert("Login Failed! Please ensure that your email and password is correct");
+            $("#password").val("");
+        } else {
+            console.log("Authenticated successfully with payload:", authData);
+        }
     });
 }
 
@@ -913,10 +953,102 @@ $(document).ready(function() {
     var metal = stack.toString();
     var imgBase = "";
     var tableArray = [];
+    var email_re = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+    var email_focused = false;
 
     // sign in user
-    $("#log-in-button").click(function() {
+    $("#google-button").click(function() {
         providerLogin("google");
+    });
+
+    $("#facebook-button").click(function() {
+        providerLogin("facebook");
+    });
+
+    $("#twitter-button").click(function() {
+        providerLogin("twitter");
+    });
+
+
+    $("#email").focus(function() {
+        email_focused = true;
+    });
+
+    // live email validator (for both keyup and keydown)
+    $("#email").keyup(function(e) {
+        var email = $(this).val();
+        if (e.keyCode == 13) {
+            $("#password").focus();
+        }
+        if (!email_re.exec(email)) {
+            $(this).css({
+                "color": "#FF4747"
+            });
+        } else {
+            $(this).css({
+                "color": "white"
+            });
+            $("#email").focus(function() {
+                $(this).css({
+                    "outline": "2px solid #68CEDE"
+                });
+            });
+        }
+    });
+
+    $("#email").keydown(function() {
+        var email = $(this).val();
+        if (!email_re.exec(email)) {
+            $(this).css({
+                "color": "#FF4747"
+            });
+        } else {
+            $(this).css({
+                "color": "white"
+            });
+        }
+    });
+
+    $("#password").keyup(function(e) {
+        if (e.keyCode == 13) {
+            var email = $("#email").val();
+            var password = $("#password").val();
+            if (email.length == 0) {
+                $("#email").focus();
+                return;
+            }
+            if (password.length == 0) {
+                alert("Either email or password is empty. Please check again");
+                return;
+            }
+            customLogin(email, password);
+        }
+    });
+
+    // sign up with email and password. login after signed up
+    $("#sign-up-button").click(function() {
+        var email = $("#email").val();
+        if (!email_re.exec(email)) {
+            $("#email").css({
+                "color": "#FF4747"
+            });
+            return;
+        }
+        var password = $("#password").val();
+        customSignup(email, password);
+    });
+
+    // login with email and password.
+    $("#log-in-button").click(function() {
+        var email = $("#email").val();
+        if (!email_re.exec(email)) {
+            $("#email").css({
+                "color": "#FF4747"
+            });
+            return;
+        }
+        var password = $("#password").val();
+        customLogin(email, password);
     });
 
     // sign out user 

@@ -289,7 +289,7 @@ a {
 
 #w1-wrapper {
     text-align: center;
-    padding-top: 120px;
+    padding-top: 0px;
     &>section {
         display: inline-block;
         vertical-align: middle;
@@ -314,55 +314,144 @@ a {
         color: $main-font;
     }
     span {
-        display: block;
-        width: 100%;
+        display: inline-block;
+        //width: 100%;
         height: 55px;
         line-height: 55px;
         text-align: center;
         font-size: 1.3em;
-        margin-top: 30px;
+        margin-top: 0px;
         //@include box-sizing(border-box);
     }
 }
 
 #sign-up-button {
+    clear: both;
     background: #1C3A3F;
     border: 1px solid #151515;
     cursor: pointer;
+    width: 48.7%;
+    margin-left: auto;
+    height: 100px;
     &:hover {
         border: 1px solid $main-accent;
     }
 }
 
 #log-in-button {
+    clear: both;
     background: #397C86;
     border: 1px solid #151515;
     cursor: pointer;
+    width: 48.7%;
+    margin-right: auto;
     &:hover {
         border: 1px solid $main-accent;
     }
 }
 
-#google-button {
-    background: #dd4b39;
-    border: 1px solid #151515;
+.social-button {
+    clear: both;
+    border: 1px solid white;
     cursor: pointer;
+    width: 31%;
+    svg {
+        @include transform(translateY(25%));
+        fill: white;
+    }
+}
+
+#google-button {
+    margin-left: 4px;
     &:hover {
-        border: 1px solid #F77A6A;
+        border: 1px solid #dd4b39;
+        svg {
+            fill: #dd4b39;
+        }
+    }
+}
+
+#facebook-button {
+    &:hover {
+        border: 1px solid #3b5998;
+        svg {
+            fill: #3b5998;
+        }
+    }
+}
+
+#twitter-button {
+    &:hover {
+        border: 1px solid #33CCFF;
+        svg {
+            fill: #33CCFF;
+        }
     }
 }
 
 #sign-in-section {
-    margin-top: 30px;
+    margin-top: 20px;
+    label {
+        display: inline-block;
+        float: left;
+        padding: 0.6em;
+        background-color: rgba(65, 77, 77, 0.5);
+        width: 10%;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        margin-right: 0px;
+        text-align: center;
+        svg {
+            fill: rgba(255, 255, 255, 0.6);
+        }
+    }
+    input:focus {
+        outline: 2px solid $main-accent;
+    }
     input {
-        border-radius: 0;
-        width: 43.8%;
-        height: 35px;
-        font-size: 14px;
+        clear: right;
+        float: left;
+        background-color: rgba(100, 100, 100, 0.7);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 77%;
+        height: 50px;
+        margin-bottom: 12px;
+        font-size: 16px;
+        font-weight: bolder;
+    }
+    #password_label {
+        clear: both;
+    }
+}
+
+#social-login-wrapper {
+    text-align: center;
+    position: relative;
+    span {
+        display: inline-block;
+    }
+    span:before,
+    span:after {
+        border-top: 1px solid white;
+        display: block;
+        height: 1px;
+        content: " ";
+        width: 30%;
+        position: absolute;
+        left: 0;
+        top: 1.5em;
+    }
+    span:after {
+        right: 0;
+        left: auto;
     }
 }
 
 #w1-right {
+    padding-top: 125px;
     height: 450px;
 }
 
@@ -1035,12 +1124,28 @@ select {
  *                             *
  * * * * * * * * * * * * * * * */
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 724px) {
+
+}
+
+@media screen and (max-width: 924px) {
     #sign-in-section {
-        margin-top: 0px;
+        margin-top: -10px;
     }
     #w1-wrapper section {
         margin: 50px 0px;
+    }
+    #w1-left {
+        padding-top: 50px;
+    }
+    #w1-right {
+        padding-top: 95px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .social-button {
+        cursor: pointer;
     }
     aside {
         display: none;
