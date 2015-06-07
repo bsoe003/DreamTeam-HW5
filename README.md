@@ -5,12 +5,14 @@ DreamTeam-HW
 
 ####TODO:
 * Fix CSS positioning for index.html when in mobile scale (Look into padding top of w1)
-* Find better way to inform that user's email is invalid
+* Find better way to inform that user's email is invalid (if time permits)
+* Consider merging change_password.html and change_email.html together? (if time permits)
 * Email focus color change when error
+* UI Bugs and Improvements
 
 ####TODO (Extra):
 * analytic tracking for common user actions
-* Phonegap
+* Phonegap (Pretty much impossible at this stage)
 
 ####BUG:
 * cursor is not pointer (hand) when in mobile size (cursor still show up when it is on svg icon)
@@ -24,10 +26,10 @@ DreamTeam-HW
 
 ####DONE:
 * Basic sign up and login feature 
+* Minifying script for CSS and JS
 ```
 sh minify.sh
 ```
-* Minifying script for CSS and JS
-* error tracking
+* error tracking (TrackJS)
 * change password page
 * change email page
