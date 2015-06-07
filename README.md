@@ -8,7 +8,9 @@ DreamTeam-HW
 * Find better way to inform that user's email is invalid (if time permits)
 * Consider merging change_password.html and change_email.html together? (if time permits)
 * Email focus color change when error
+* When on edit mode, being able to change photo (currently you can only add if it hasn't added before)
 * UI Bugs and Improvements
+* platinum_detail highlighting at Ag instead of Pt
 
 ####TODO (Extra):
 * analytic tracking for common user actions
@@ -17,6 +19,7 @@ DreamTeam-HW
 ####BUG:
 * cursor is not pointer (hand) when in mobile size (cursor still show up when it is on svg icon)
 * error tracking may not work when AdBlock is on.
+* The application DOES NOT work in iPhone 5
 
 ####ISSUE:
 * Firebase seems to be really slow. This makes user think that certain featues are not working. Perhaps make a splash screen?

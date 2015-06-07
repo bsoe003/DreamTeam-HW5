@@ -13,9 +13,17 @@ if [ $(program_is_installed uglifycss) != 1 ]; then
 	npm install uglifycss -g 2> /dev/null
 fi
 
-echo "Minifying libraries.js to libraries.min.js"
-uglifyjs -o js/libraries.min.js -c -- js/libraries.js 2> /dev/null
-echo "Minifying unify.js to unify.min.js"
-uglifyjs -o js/unify.min.js -c -- js/unify.js 2> /dev/null
+echo "Combining all CSS to main.css"
+cat style/*.css > main.css
+
+echo "Combining all JS to main.js"
+cat js/*.js > main.js
+
+echo "Minifying main.js to main.min.js"
+uglifyjs -o main.min.js -c -- main.js 2> /dev/null
 echo "Minifying style.css to style.min.css"
-uglifycss style/style.css > style/style.min.css 2> /dev/null
+uglifycss main.css > main.min.css 2> /dev/null
+echo "Removing main.css"
+rm main.css
+echo "Removing main.js"
+rm main.js
