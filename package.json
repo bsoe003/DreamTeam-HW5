@@ -1,0 +1,31 @@
+{
+  "name": "BullionTracker",
+  "version": "1.0.0",
+  "description": "CSE 134B Final Project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bsoe003/PocketMoney.git"
+  },
+  "keywords": [
+    "bullion",
+    "coins",
+    "gold",
+    "silver",
+    "platinum"
+  ],
+  "author": "DreamTeam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bsoe003/PocketMoney/issues"
+  },
+  "homepage": "https://134b-dreamteam.firebaseapp.com",
+  "main": "index.js",
+  "dependencies": {
+    "uglify-js": "^2.4.23",
+    "uglifycss": "^0.0.15"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

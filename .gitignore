@@ -10,3 +10,4 @@
 *.class
 *.map
 tmp_dir/
+node_modules/

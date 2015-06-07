@@ -518,7 +518,6 @@ function customSignup(email, password) {
             $("#password").val("");
         } else {
             console.log("Successfully created user account with uid:", authData.uid);
-            alert("sign up successful");
             var userExists = false;
             var uid = authData.uid;
             for (var i = 0; i < users.length; i++) {
@@ -533,9 +532,12 @@ function customSignup(email, password) {
                     'silver': 'loading...',
                     'platinum': 'loading...',
                 };
+                authData['email'] = email;
+                authData['password'] = CryptoJS.SHA3(password);
                 userRef.child(uid).set(authData);
                 users.push(uid);
             }
+            alert("Sign up Successful! Welcome to Bullion Tracker!");
         }
         customLogin(email, password);
     });
