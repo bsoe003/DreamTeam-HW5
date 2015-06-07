@@ -413,6 +413,8 @@ var userRef = firebase.child("users");
 var userCollected = false;
 var inSession = false;
 var currentUser = "";
+var simple_email = "";
+var simple_password = "";
 var users = [];
 const API_URL = "https://www.quandl.com/api/v1/datasets/WSJ/";
 
@@ -499,7 +501,7 @@ function providerLogin(provider, oauthOption) {
 }
 
 function customSignup(email, password) {
-    userRef.createUser({
+    firebase.createUser({
         email: email,
         password: password
     }, function(error, authData) {
@@ -533,7 +535,7 @@ function customSignup(email, password) {
                     'platinum': 'loading...',
                 };
                 authData['email'] = email;
-                authData['password'] = CryptoJS.SHA3(password);
+                authData['pwd'] = btoa(password);
                 userRef.child(uid).set(authData);
                 users.push(uid);
             }
@@ -544,7 +546,7 @@ function customSignup(email, password) {
 }
 
 function customLogin(email, password) {
-    userRef.authWithPassword({
+    firebase.authWithPassword({
         email: email,
         password: password
     }, function(error, authData) {
@@ -554,6 +556,120 @@ function customLogin(email, password) {
             $("#password").val("");
         } else {
             console.log("Authenticated successfully with payload:", authData);
+        }
+    });
+}
+
+function changeEmail(old_email, new_email) {
+    getPassword();
+    firebase.changeEmail({
+        oldEmail: old_email,
+        newEmail: new_email,
+        password: atob(simple_password)
+    }, function(error) {
+        if (error) {
+            switch (error.code) {
+                case "INVALID_PASSWORD":
+                    console.log("The specified user account password is incorrect.");
+                    break;
+                case "INVALID_USER":
+                    console.log("The specified user account does not exist.");
+                    break;
+                default:
+                    console.log("Error creating user:", error);
+            }
+        } else {
+            console.log("User email changed successfully!");
+            alert("Your email has been updated");
+            userRef.child(currentUser).update({
+                'email': new_email
+            });
+            location.href = "/home.html";
+        }
+    });
+}
+
+function changePassword(old_password, new_password) {
+    getEmail();
+    firebase.changePassword({
+        email: simple_email,
+        oldPassword: old_password,
+        newPassword: new_password
+    }, function(error) {
+        if (error) {
+            switch (error.code) {
+                case "INVALID_PASSWORD":
+                    alert("The specified user account password is incorrect.");
+                    break;
+                case "INVALID_USER":
+                    alert("The specified user account does not exist.");
+                    break;
+                default:
+                    console.log("Error changing password:", error);
+            }
+        } else {
+            console.log("User password changed successfully!");
+            alert("Your password has been updated");
+            var tmpPwd = btoa(new_password);
+            console.log(tmpPwd);
+            userRef.child(currentUser).update({
+                'pwd': tmpPwd
+            });
+            location.href = "/home.html";
+        }
+    });
+}
+
+function deleteUser() {
+    getEmail();
+    getPassword();
+    firebase.removeUser({
+        email: simple_email,
+        password: atob(simple_password)
+    }, function(error) {
+        if (error) {
+            switch (error.code) {
+                case "INVALID_USER":
+                    alert("The specified user account does not exist.");
+                    break;
+                case "INVALID_PASSWORD":
+                    alert("The specified user account password is incorrect.");
+                    break;
+                default:
+                    console.log("Error removing user:", error);
+            }
+        } else {
+            alert("User account deleted successfully!");
+            userRef.child(currentUser).remove();
+            logout();
+            location.href = "/";
+        }
+    });
+}
+
+function getEmail() {
+    if (!inSession) {
+        return "";
+    }
+    userRef.child(currentUser).on('value', function(data) {
+        try {
+            simple_email = data.val()['email'];
+        } catch (err) {
+            simple_email = "";
+        }
+        $("#old_email").val(simple_email);
+    });
+}
+
+function getPassword() {
+    if (!inSession) {
+        return "";
+    }
+    userRef.child(currentUser).on('value', function(data) {
+        try {
+            simple_password = data.val()['pwd'];
+        } catch (err) {
+            simple_password = "";
         }
     });
 }
@@ -1053,6 +1169,24 @@ $(document).ready(function() {
         logout();
     });
 
+    $("#change_save").click(function() {
+        if (location.pathname.contains("change_email")) {
+            changeEmail($("#old_email").val(), $("#new_email").val());
+            return;
+        }
+        if (location.pathname.contains("change_password")) {
+            changePassword($("#old_password").val(), $("#new_password").val());
+            return;
+        }
+    });
+
+    $("#change_delete").click(function() {
+        var response = confirm("Be careful! Once you click \"OK\", your account is gone forever");
+        if(response) {
+            deleteUser();
+        }
+    });
+
     $("#image_upload").click(function() {
         $(this).children()[0].click();
     });
@@ -1160,6 +1294,7 @@ $(document).ready(function() {
             stack.read();
         }
         stack.total();
+        getEmail();
     }
 });
 

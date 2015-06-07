@@ -1173,7 +1173,7 @@ select {
             width: 80%;
         }
     }
-    #save {
+    #change_save {
         clear: both;
         margin-left: auto;
         margin-right: auto;
@@ -1187,7 +1187,7 @@ select {
         color: white;
         text-decoration: none;
     }
-    #delete {
+    #change_delete {
         clear: both;
         margin-left: auto;
         margin-right: auto;
@@ -1231,6 +1231,7 @@ select {
 @media screen and (max-width: 1000px) {
     #edit_profile_wrapper {
         width: 375px;
+        margin-top: 30px;
         #sign-in-section {
             margin-left: 5px;
             margin-right: auto;

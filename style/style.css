@@ -1049,7 +1049,7 @@ select {
     margin-right: auto; }
     #edit_profile_wrapper #sign-in-section input {
       width: 80%; }
-  #edit_profile_wrapper #save {
+  #edit_profile_wrapper #change_save {
     clear: both;
     margin-left: auto;
     margin-right: auto;
@@ -1059,9 +1059,9 @@ select {
     cursor: pointer;
     color: white;
     text-decoration: none; }
-    #edit_profile_wrapper #save:hover {
+    #edit_profile_wrapper #change_save:hover {
       border: 1px solid #68CEDE; }
-  #edit_profile_wrapper #delete {
+  #edit_profile_wrapper #change_delete {
     clear: both;
     margin-left: auto;
     margin-right: auto;
@@ -1074,7 +1074,7 @@ select {
     line-height: 50px;
     color: white;
     text-decoration: none; }
-    #edit_profile_wrapper #delete:hover {
+    #edit_profile_wrapper #change_delete:hover {
       border: 1px solid #FF7C75; }
 
 /* * * * * * * * * * * * * * * *
@@ -1096,7 +1096,8 @@ select {
     padding-top: 95px; } }
 @media screen and (max-width: 1000px) {
   #edit_profile_wrapper {
-    width: 375px; }
+    width: 375px;
+    margin-top: 30px; }
     #edit_profile_wrapper #sign-in-section {
       margin-left: 5px;
       margin-right: auto; }
