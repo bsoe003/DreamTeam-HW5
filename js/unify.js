@@ -261,7 +261,31 @@ var page = path.split("/").pop();
             },
             "Bullion Bar": {
                 "metal_percent": "0.85"
-            }
+            },
+            "Cast Bullion": {
+                "metal_percent": "0.80"
+            },
+            "Minted Bullion": {
+                "metal_percent": "0.95"
+            },
+            "Extruded Bullion": {
+                "metal_percent": "0.90"
+            },
+            "Limited Bullion": {
+                "metal_percent": "0.88"
+            },
+            "Cast Coin": {
+                "metal_percent": "0.95"
+            },
+            "Minted Coin": {
+                "metal_percent": "0.99"
+            },
+            "Extruded Coin": {
+                "metal_percent": "0.97"
+            },
+            "Limited Coin": {
+                "metal_percent": "0.92"
+            },
         },
         "Silver": {
             "US Eagle": {
@@ -269,7 +293,31 @@ var page = path.split("/").pop();
             },
             "Bullion Bar": {
                 "metal_percent": "0.85"
-            }
+            },
+            "Cast Bullion": {
+                "metal_percent": "0.80"
+            },
+            "Minted Bullion": {
+                "metal_percent": "0.95"
+            },
+            "Extruded Bullion": {
+                "metal_percent": "0.90"
+            },
+            "Limited Bullion": {
+                "metal_percent": "0.88"
+            },
+            "Cast Coin": {
+                "metal_percent": "0.95"
+            },
+            "Minted Coin": {
+                "metal_percent": "0.99"
+            },
+            "Extruded Coin": {
+                "metal_percent": "0.97"
+            },
+            "Limited Coin": {
+                "metal_percent": "0.92"
+            },
         },
         "Platinum": {
             "US Eagle": {
@@ -277,7 +325,31 @@ var page = path.split("/").pop();
             },
             "Bullion Bar": {
                 "metal_percent": "0.85"
-            }
+            },
+            "Cast Bullion": {
+                "metal_percent": "0.80"
+            },
+            "Minted Bullion": {
+                "metal_percent": "0.95"
+            },
+            "Extruded Bullion": {
+                "metal_percent": "0.90"
+            },
+            "Limited Bullion": {
+                "metal_percent": "0.88"
+            },
+            "Cast Coin": {
+                "metal_percent": "0.95"
+            },
+            "Minted Coin": {
+                "metal_percent": "0.99"
+            },
+            "Extruded Coin": {
+                "metal_percent": "0.97"
+            },
+            "Limited Coin": {
+                "metal_percent": "0.92"
+            },
         }
     };
 
